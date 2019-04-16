@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<ul class="nav justify-content-center">
+    <li class="nav-item">
+        <a class="nav-link active" href="index.html">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="about.html">About</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="http://openweathermap.org">Visit API website</a>
+    </li>
+</ul>
+<div class="container">
+    <div class="jumbotron">
+        <div class="navbar-header">
+            <div style="text-align: center; font-size:2em;"><a class="navbar-nav mr-auto" href="index.html">Weather App</a></div>
+        </div>
+        <div id="error">
+        </div>
+        <h4 class="display-9 text-center">Enter a city name</h4>
+        <form id="searchForm">
+            <input type="text" class="form-control" id="search" placeholder="Search...">
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Search</button>
+        </form>
+    </div>
+    <div id="loading">
+    </div>
+    <div class="container" id="weather">
+
+    </div>
+
+
+</div>
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="../javascript/main.js"></script>
+</body>
+</html>

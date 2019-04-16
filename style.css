@@ -1,0 +1,17 @@
+
+#weather img{
+    width:12%;
+}
+
+#error{
+    color:red;
+    text-align:center;
+    font-size:0.96em;
+}
+.btn{
+    margin-top:6px;
+}
+.about{
+    font-size:1.2em;
+    text-align:center;
+}

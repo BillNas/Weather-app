@@ -11,7 +11,7 @@ function convertToCelcius(k){
 }
 
 function getWeather(search) {
-    var url='http://api.openweathermap.org/data/2.5/forecast?q='+search+'&APPID=1c9bc4873ef16337587a09104589da93';
+    var url='http://api.openweathermap.org/data/2.5/forecast?q='+search+'&APPID=YourAPIKey';
     let output='';
     let error='';
     $('#heroes').html(output);
@@ -27,7 +27,6 @@ function getWeather(search) {
         axios.get(url)
 
             .then((response) => {
-                console.log(response);
                 let city = response.data.city.name;
                 let temp=response.data.list[0].main.temp;
                 let country = response.data.city.country;
@@ -53,7 +52,6 @@ function getWeather(search) {
 
 
             .catch((err) => {
-                console.log(err);
                 error = 'No city found.';
                 $('#error').html(error)
                 $('#weather').html('');

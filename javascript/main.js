@@ -5,6 +5,9 @@ $(document).ready(() => {
         e.preventDefault();
     })
 });
+
+//The temperature data that gets returned is in Kelvin so we need to convert it to Celcius
+
 function convertToCelcius(k){
     var Celcius = k - 273.15;
     return Celcius;

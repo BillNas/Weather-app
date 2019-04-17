@@ -5,60 +5,24 @@ $(document).ready(() => {
         e.preventDefault();
     })
 });
-
-//The temperature data that gets returned is in Kelvin so we need to convert it to Celcius
-
-function convertToCelcius(k){
-    var Celcius = k - 273.15;
-    return Celcius;
-}
-
 function getWeather(search) {
-    var url='http://api.openweathermap.org/data/2.5/forecast?q='+search+'&APPID=YourAPIKey';
-    let output='';
-    let error='';
-    $('#heroes').html(output);
-    $('#error').html(error);
-    if(search===''){
-        error='<div>Please enter a city name.</div>';
-        loading='';
-        $('#loading').html(loading)
-        $('#error').html(error)
-
-    }
-    else {
-        axios.get(url)
-
-            .then((response) => {
-                let city = response.data.city.name;
-                let temp=response.data.list[0].main.temp;
-                let country = response.data.city.country;
-                let humidity = response.data.list[0].main.humidity
-                let icon = response.data.list[0].weather[0].icon;
-                let weather = response.data.list[0].weather[0].description;
-                temp=Math.round(convertToCelcius(temp));
-
-                    let output = `
-         <div class="jumbotron"  class="row">
-        <div class="col">
-        <div class="well text-center">
-        <h5>${city} , ${country}</h5>
-         <h5>${weather}<img src="http://openweathermap.org/img/w/${icon}.png"></h5>
-         <h5>Current Temperature : ${temp} C° </h5>
-         <h5>Humidity : ${humidity} %</h5>     
-</div>
-</div>
-        `;
-                    $('#weather').html(output);
-
-            })
-
-
-            .catch((err) => {
-                error = 'No city found.';
-                $('#error').html(error)
-                $('#weather').html('');
-
+    var url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + search + '&APPID=YourAPIKey';
+    $.ajax({
+        url: url,
+        dataType: "json",
+        type: "GET",
+        success: function (data) {
+            var weather = "";
+            weather += "<h2>" + data.city.name + ', ' + data.city.country + "</h2>"; 
+            $.each(data.list, function (index, value) {
+                weather += "<p>"
+                weather += "<b>Date: " + value.dt_txt + "</b>: " // Dates
+                weather += value.main.temp + "&degC" // Temperature
+                weather += "<span> | " + value.weather[0].description + "</span>"; 
+                weather += "<img src='https://openweathermap.org/img/w/" + value.weather[0].icon + ".png'>" 
+                weather += "</p>" 
             });
-    }
-}
+            $("#weather").html(weather);
+        }
+    })
+};
